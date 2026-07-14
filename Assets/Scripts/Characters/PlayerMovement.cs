@@ -8,9 +8,11 @@ public class PlayerMovementLegacy : NetworkBehaviour
     public float maxSpeed = 6f;
     public float jumpImpulse = 8f;
     public float jumpCooldown = 1f;
-    public int AxisHorizontal = 0; // 0 = none, 1 = left, 2 = right
+    public int AxisHorizontal = 0;
     public float forceMultiplier = 5f;
     public float gravityScale = 4f;
+    public Vector3 spawnPosition = new Vector3(0, 0, 0);
+    public GameObject playerPrefab;
 
     Rigidbody2D rb;
     float horiz = 0f;
@@ -60,11 +62,16 @@ public class PlayerMovementLegacy : NetworkBehaviour
         v.x = Mathf.Clamp(v.x, -maxSpeed, maxSpeed);
         rb.linearVelocity = v;
     }
-    void OnNetworkSpawn()
+    public void spawnWithOwnership()
     {
         if (!IsOwner)
         {
             enabled = false;
+        }
+        else
+        {
+            enabled = true;
+            GameObject player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
         }
     }
 }
