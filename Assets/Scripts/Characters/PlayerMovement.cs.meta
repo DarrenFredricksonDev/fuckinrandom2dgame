@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 99ea948bc4b1e1f44a335f03ef3edc80
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - moveActionRef: {fileID: 7205515060958737158, guid: 109d6c30bdb49a646a9069e47f06aff1, type: 3}
+  - jumpActionRef: {fileID: 4336239417997532232, guid: 109d6c30bdb49a646a9069e47f06aff1, type: 3}
+  - inputActionAsset: {fileID: -944628639613478452, guid: 109d6c30bdb49a646a9069e47f06aff1, type: 3}
+  - groundCheck: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
