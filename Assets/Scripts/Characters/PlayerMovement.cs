@@ -1,8 +1,8 @@
 using UnityEngine;
-using Unity.Netcode;
+using Photon.Pun;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovementLegacy : NetworkBehaviour
+public class PlayerMovementLegacy : MonoBehaviour
 {
     public float moveForce = 200f;
     public float maxSpeed = 6f;
@@ -11,12 +11,15 @@ public class PlayerMovementLegacy : NetworkBehaviour
     public int AxisHorizontal = 0;
     public float forceMultiplier = 5f;
     public float gravityScale = 4f;
-    public Vector3 spawnPosition = new Vector3(0, 0, 0);
-    public GameObject playerPrefab;
+    PhotonView view;
 
     Rigidbody2D rb;
     float horiz = 0f;
     float lastJumpTime = -Mathf.Infinity;
+    void Start()
+    {
+        view = GetComponent<PhotonView>();
+    }
 
     void Awake()
     {
@@ -27,28 +30,29 @@ public class PlayerMovementLegacy : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner) return;
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (view.IsMine)
         {
-            AxisHorizontal = -1;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            AxisHorizontal = 1;
-        }
-        else
-        {
-            AxisHorizontal = 0;
-        }
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
+                AxisHorizontal = -1;
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                AxisHorizontal = 1;
+            }
+            else
+            {
+                AxisHorizontal = 0;
+            }
 
-        horiz = Input.GetAxisRaw("Horizontal"); // -1..0..1
+            horiz = Input.GetAxisRaw("Horizontal"); // -1..0..1
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastJumpTime + jumpCooldown)
-        {
-            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
-            lastJumpTime = Time.time;
+            if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastJumpTime + jumpCooldown)
+            {
+                rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+                lastJumpTime = Time.time;
+            }
         }
-    }
 
     void FixedUpdate()
     {
@@ -61,17 +65,5 @@ public class PlayerMovementLegacy : NetworkBehaviour
         Vector2 v = rb.linearVelocity;
         v.x = Mathf.Clamp(v.x, -maxSpeed, maxSpeed);
         rb.linearVelocity = v;
-    }
-    public void spawnWithOwnership()
-    {
-        if (!IsOwner)
-        {
-            enabled = false;
-        }
-        else
-        {
-            enabled = true;
-            GameObject player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
-        }
     }
 }
