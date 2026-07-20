@@ -152,7 +152,7 @@ MonoBehaviour:
   maxX: 5
   minX: -5
   maxY: 5
-  minY: -5
+  minY: 0
 --- !u!4 &180953356
 Transform:
   m_ObjectHideFlags: 0
