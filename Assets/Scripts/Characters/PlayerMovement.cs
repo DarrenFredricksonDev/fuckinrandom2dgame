@@ -53,7 +53,7 @@ public class PlayerMovementLegacy : MonoBehaviour
                 lastJumpTime = Time.time;
             }
         }
-
+    }
     void FixedUpdate()
     {
         float dir = 0f;
@@ -66,4 +66,4 @@ public class PlayerMovementLegacy : MonoBehaviour
         v.x = Mathf.Clamp(v.x, -maxSpeed, maxSpeed);
         rb.linearVelocity = v;
     }
-}
+}   
