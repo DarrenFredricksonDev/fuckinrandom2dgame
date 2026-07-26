@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Unity.Cinemachine;
 
 public class SpawnPlayers : MonoBehaviour
 {
@@ -12,10 +13,5 @@ public class SpawnPlayers : MonoBehaviour
     {
         Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-    }
-
-    void Update()
-    {
-        
     }
 }

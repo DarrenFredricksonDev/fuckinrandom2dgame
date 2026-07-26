@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovementLegacy : MonoBehaviour
@@ -19,6 +20,10 @@ public class PlayerMovementLegacy : MonoBehaviour
     void Start()
     {
         view = GetComponent<PhotonView>();
+        if (!GetComponent<PhotonView>().IsMine)
+        {
+            GetComponentInChildren<CinemachineCamera>().enabled = false;
+        }
     }
 
     void Awake()
