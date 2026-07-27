@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f85171af6b9df0c498b3cabc82022aa9
+guid: 63967332e49d66d4f9f0de7d5a8e7552
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: boomerang1
     originalName: 
-    pivot: {x: 0.41891894, y: -0.22535211}
+    pivot: {x: 0.28355056, y: 0.50388956}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -139,7 +139,7 @@ ScriptedImporter:
       y: 4
       width: 74
       height: 71
-    spriteID: 556751dc5c6926f46a3e3d22fa8ccd4d
+    spriteID: cbcbf15417209a04ab1ccf11a4ec1454
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -171,7 +171,7 @@ ScriptedImporter:
         y: 16
         width: 74
         height: 71
-      spriteId: 556751dc5c6926f46a3e3d22fa8ccd4d
+      spriteId: cbcbf15417209a04ab1ccf11a4ec1454
     linkedCells: []
     tileCells: []
     tileSetIndex: 0

@@ -13,6 +13,8 @@ public class PlayerMovementLegacy : MonoBehaviour
     public float forceMultiplier = 5f;
     public float gravityScale = 4f;
     PhotonView view;
+    public float health = 100f;
+    public bool hasBoomerang = true;
 
     Rigidbody2D rb;
     float horiz = 0f;
