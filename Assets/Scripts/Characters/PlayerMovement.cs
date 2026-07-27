@@ -14,8 +14,8 @@ public class PlayerMovementLegacy : MonoBehaviour
     public float gravityScale = 4f;
     PhotonView view;
     public float health = 100f;
-    public bool hasBoomerang = true;
-
+    public GameObject boomerangPrefab;
+    public Transform boomerangHoldPoint;
     Rigidbody2D rb;
     float horiz = 0f;
     float lastJumpTime = -Mathf.Infinity;
@@ -73,4 +73,4 @@ public class PlayerMovementLegacy : MonoBehaviour
         v.x = Mathf.Clamp(v.x, -maxSpeed, maxSpeed);
         rb.linearVelocity = v;
     }
-}   
+}

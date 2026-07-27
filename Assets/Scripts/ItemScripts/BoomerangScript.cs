@@ -43,8 +43,7 @@ public class BoomerangScript : MonoBehaviour
         if (isReturning == true)
         {
             Vector3 direction = (startPosition - transform.position).normalized;
-            transform.Translate(direction * speed * Time.deltaTime);
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            rb.AddForce(direction * speed * 2 * Time.deltaTime, ForceMode2D.Force);
         }
     }
     public IEnumerator wait()

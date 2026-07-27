@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ProcGenerateStars : MonoBehaviour
 {
@@ -9,64 +10,64 @@ public class ProcGenerateStars : MonoBehaviour
     public GameObject starPrefab4;
 
     [Header("Star field settings")]
-    public int starCount = 250; 
-    public float speed = 10f; 
+    public int starCount = 250;
+    public float speed = 10f;
     public float left = -10f;
     public float right = 10f;
     public float bottom = -10f;
     public float top = 10f;
-
+    public Transform fieldCenter;
+    private Vector3 centerBefore;
     private List<GameObject> stars = new List<GameObject>();
-
     void Start()
     {
-        
+        fieldCenter = transform;
+        centerBefore = transform.position;
         for (int i = 0; i < starCount; i++)
         {
-            Vector3 position = new Vector3(Random.Range(left, right), Random.Range(bottom, top), Random.Range(-1f, 1f));
-            GameObject prefab = ChooseRandomPrefab();
-            if (prefab != null)
-            {
-                GameObject go = Instantiate(prefab, position, Quaternion.identity, transform);
-                stars.Add(go);
-            }
+            GameObject starPrefab = GetRandomStarPrefab();
+            Vector3 randomPosition = new Vector3(Random.Range(left, right), Random.Range(bottom, top), -1f);
+            GameObject star = Instantiate(starPrefab, randomPosition, Quaternion.identity);
+            stars.Add(star);
         }
     }
-
     void Update()
     {
-        float dy = speed * Time.deltaTime;
-        for (int i = 0; i < stars.Count; i++)
+        Vector3 cameraMovement = fieldCenter.position - centerBefore;
+        top += cameraMovement.y;
+        bottom += cameraMovement.y;
+        left += cameraMovement.x;
+        right += cameraMovement.x;
+        foreach (GameObject star in stars)
         {
-            GameObject s = stars[i];
-            if (s == null) continue;
-            s.transform.position += Vector3.up * dy;
-            if (s.transform.position.y > top)
+            star.transform.position += cameraMovement;
+
+            star.transform.Translate(Vector3.up * speed * Time.deltaTime);
+
+            if (star.transform.position.y > top)
             {
-                
-                Destroy(s);
-                Vector3 pos = new Vector3(Random.Range(left, right), bottom, Random.Range(-1f, 1f));
-                GameObject prefab = ChooseRandomPrefab();
-                GameObject newStar = null;
-                if (prefab != null)
-                {
-                    newStar = Instantiate(prefab, pos, Quaternion.identity, transform);
-                }
-                stars[i] = newStar; 
+                float randomX = Random.Range(left, right);
+                star.transform.position = new Vector3(randomX, bottom, -1f);
             }
         }
-    }
 
-    private GameObject ChooseRandomPrefab()
+        centerBefore = fieldCenter.position;
+    }
+    GameObject GetRandomStarPrefab()
     {
-        int prefabIndex = Random.Range(0, 4);
-        switch (prefabIndex)
+        int randomIndex = Random.Range(0, 4);
+        switch (randomIndex)
         {
-            case 0: return starPrefab1;
-            case 1: return starPrefab2;
-            case 2: return starPrefab3;
-            case 3: return starPrefab4;
-            default: return null;
+            case 0:
+                return starPrefab1;
+            case 1:
+                return starPrefab2;
+            case 2:
+                return starPrefab3;
+            case 3:
+                return starPrefab4;
+            default:
+                return starPrefab1;
         }
     }
 }
