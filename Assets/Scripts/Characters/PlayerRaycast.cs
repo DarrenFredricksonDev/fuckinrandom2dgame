@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
 public class PlayerRaycast : MonoBehaviour
 {
@@ -37,33 +38,45 @@ public class PlayerRaycast : MonoBehaviour
     IEnumerator WaitToTeleport()
     {
         yield return new WaitForSeconds(2f);
-        started = false;
         Debug.Log("Waiting.");
         TeleportToNearestPlatform();
     }
     void Vaporize()
     {
         GetComponent<PlayerMovementLegacy>().health = 0f;
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
     void TeleportToNearestPlatform()
     {
-        Vector2 findDirection1 = new Vector2(0f, 1f);
-        Vector2 findDirection2 = new Vector2(1f, 1f);
-        Vector2 findDirection3 = new Vector2(-1f, 1f);
-        Vector2 findDirection4 = new Vector2(-0.5f, 1f);
-        Vector2 findDirection5 = new Vector2(0.5f, 1f);
-        Debug.Log("Teleport function started");
         Vector2 origin = (Vector2)transform.position + Vector2.up * (rayDistance + 10f);
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, rayDistance + 2000f, platformLayer);
-        Debug.DrawRay(origin, Vector2.up * (rayDistance + 2000f), Color.green, 2f);
-        Debug.Log(origin);
-        if (hit.collider != null)
+        float circleRadius = 2000f;
+        Collider2D[] circleHit = Physics2D.OverlapCircleAll(origin, circleRadius, platformLayer);
+        if (circleHit == null || circleHit.Length == 0)
         {
-            Vector2 target = hit.point;
-            rb.linearVelocity = Vector2.zero; // stop current motion
-            transform.position = new Vector3(target.x, target.y + 2f, transform.position.z);
-            Debug.Log("Teleported.");
+            Debug.Log("No platform found.");
+            return;
         }
+        float bestDist = Mathf.Infinity;
+        Vector2 bestPoint = origin;
+        foreach (var hit in circleHit)
+        {
+            Vector2 closest = hit.ClosestPoint(origin);
+            float d = (closest - origin).sqrMagnitude;
+            if (d < bestDist)
+            {
+                bestDist = d;
+                bestPoint = closest;
+            }
+        }
+        if (bestDist == Mathf.Infinity)
+        {
+            Debug.Log("No platform found.");
+            return;
+        }
+        rb.linearVelocity = Vector2.zero;
+        transform.position = new Vector3(bestPoint.x, bestPoint.y + 2f, transform.position.z);
+        Debug.Log("Teleported.");
+        started = false; 
     }
+
 }

@@ -161,9 +161,6 @@ PrefabInstance:
       addedObject: {fileID: 4320207812569303650}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 1a5dba1980a384d4abd4fc9780c1253d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4459688873740492998}
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 1a5dba1980a384d4abd4fc9780c1253d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6575916905638176467}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 1a5dba1980a384d4abd4fc9780c1253d, type: 3}
       insertIndex: -1
@@ -382,28 +379,6 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &4459688873740492998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8677824541938276103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99ea948bc4b1e1f44a335f03ef3edc80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementLegacy
-  moveForce: 200
-  maxSpeed: 6
-  jumpImpulse: 8
-  jumpCooldown: 1
-  AxisHorizontal: 0
-  forceMultiplier: 5
-  gravityScale: 4
-  health: 100
-  boomerangPrefab: {fileID: 0}
-  boomerangHoldPoint: {fileID: 0}
 --- !u!114 &6575916905638176467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,12 +448,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   rb: {fileID: 4955763563588452737}
-  rayDistance: 10
-  force: 50
+  rayDistance: 200
+  force: 2000
   directionX: 0
   platformLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   started: 0
 --- !u!1001 &4764785411596105419
 PrefabInstance:

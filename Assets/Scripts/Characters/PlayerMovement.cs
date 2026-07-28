@@ -74,7 +74,7 @@ public class PlayerMovementLegacy : MonoBehaviour
         rb.linearVelocity = v;
         if (health <= 0f)
         {
-            Destroy(this);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }
