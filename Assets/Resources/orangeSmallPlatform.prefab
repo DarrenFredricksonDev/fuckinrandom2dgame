@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5439300439365382417}
   - component: {fileID: -6836063294285797726}
   - component: {fileID: -5204599217606078543}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: orangeSmallPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

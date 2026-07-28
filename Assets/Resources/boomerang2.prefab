@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boomerang2
       objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: 63967332e49d66d4f9f0de7d5a8e7552, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 63967332e49d66d4f9f0de7d5a8e7552, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

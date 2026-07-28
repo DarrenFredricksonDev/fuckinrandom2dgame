@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4921753148732502263}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: boomerangHoldPointEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}

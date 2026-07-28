@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5200393740054224139}
   - component: {fileID: 3503552593074401356}
   - component: {fileID: 5058368562532749856}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 2dCinemachineCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}

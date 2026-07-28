@@ -72,5 +72,9 @@ public class PlayerMovementLegacy : MonoBehaviour
         Vector2 v = rb.linearVelocity;
         v.x = Mathf.Clamp(v.x, -maxSpeed, maxSpeed);
         rb.linearVelocity = v;
+        if (health <= 0f)
+        {
+            Destroy(this);
+        }
     }
 }
