@@ -15,9 +15,9 @@ public class PlayerRaycast : MonoBehaviour
     {
         bool checkLateGame = GameLogic.isLateGame;
         Vector2 forceDirection = new Vector2(directionX, 1f);
-        Vector2 position = new Vector2 (transform.position.x, transform.position.y + 5f);
-        RaycastHit2D raycastedObject = Physics2D.Raycast(position, Vector2.down, rayDistance);
-        Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.red);
+        Vector2 position = (Vector2)transform.position + Vector2.up * 5f;
+        RaycastHit2D raycastedObject = Physics2D.Raycast(position, Vector2.down, rayDistance, platformLayer);
+        Debug.DrawRay(position, Vector2.down * rayDistance, Color.red); ;
         if (raycastedObject.collider == null)
         {
             if (checkLateGame == false && started == false)

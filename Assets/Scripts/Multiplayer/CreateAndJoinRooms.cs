@@ -23,4 +23,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("GameLobby");
 
     }
+    public void OnJoinRoomFailed()
+    {
+        Debug.LogError("Failed.");
+    }
 }

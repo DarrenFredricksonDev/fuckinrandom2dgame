@@ -12,9 +12,13 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private float baseYPos = -3f;
     [SerializeField] private float baseXPos = 0f;
     [SerializeField] private float smallYPos = 2f;
+    public float genSize = 3f;
 
     void Start()
     {
+        if (PhotonNetwork.PlayerList.Length <= 2f) genSize = 3f;
+        else if (PhotonNetwork.PlayerList.Length > 2f && PhotonNetwork.PlayerList.Length < 4f) genSize = 5f;
+        else genSize = 8f;
         int randomBase = Random.Range(0, 3);
         Vector2 basePos = new Vector2(baseXPos, baseYPos);
 
@@ -35,9 +39,9 @@ public class LevelSpawner : MonoBehaviour
         {
             PhotonNetwork.Instantiate(basePreFab3.name, basePos, Quaternion.identity);
         }
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < genSize; i++)
         {
-            float smallXPos = Random.Range(-10f, 11f);
+            float smallXPos = Random.Range(-20f, 21f);
             int randomSmall = Random.Range(0, 3);
             Vector2 smallPos = new Vector2(smallXPos, smallYPos);
 

@@ -22,32 +22,40 @@ public class ProcGenerateStars : MonoBehaviour
     void Start()
     {
         fieldCenter = transform;
-        centerBefore = transform.position;
+        centerBefore = fieldCenter.position;
         for (int i = 0; i < starCount; i++)
         {
             GameObject starPrefab = GetRandomStarPrefab();
-            Vector3 randomPosition = new Vector3(Random.Range(left, right), Random.Range(bottom, top), -1f);
+            // position relative to the field center
+            Vector3 randomPosition = fieldCenter.position + new Vector3(Random.Range(left, right), Random.Range(bottom, top), -1f);
             GameObject star = Instantiate(starPrefab, randomPosition, Quaternion.identity);
             stars.Add(star);
         }
     }
+
     void Update()
     {
         Vector3 cameraMovement = fieldCenter.position - centerBefore;
-        top += cameraMovement.y;
-        bottom += cameraMovement.y;
-        left += cameraMovement.x;
-        right += cameraMovement.x;
+
+        // compute world-space bounds each frame (don't permanently modify the original offsets)
+        float leftWorld = fieldCenter.position.x + left;
+        float rightWorld = fieldCenter.position.x + right;
+        float bottomWorld = fieldCenter.position.y + bottom;
+        float topWorld = fieldCenter.position.y + top;
+
         foreach (GameObject star in stars)
         {
+            // apply camera movement
             star.transform.position += cameraMovement;
 
-            star.transform.Translate(Vector3.up * speed * Time.deltaTime);
+            // move star upward in world space
+            star.transform.position += Vector3.up * speed * Time.deltaTime;
 
-            if (star.transform.position.y > top)
+            // wrap when above top
+            if (star.transform.position.y > topWorld)
             {
-                float randomX = Random.Range(left, right);
-                star.transform.position = new Vector3(randomX, bottom, -1f);
+                float randomX = Random.Range(leftWorld, rightWorld);
+                star.transform.position = new Vector3(randomX, bottomWorld, -1f);
             }
         }
 

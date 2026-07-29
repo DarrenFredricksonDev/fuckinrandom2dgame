@@ -16,7 +16,7 @@ public class PlayerMovementLegacy : MonoBehaviour
     public float health = 100f;
     public GameObject boomerangPrefab;
     public Transform boomerangHoldPoint;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     float horiz = 0f;
     float lastJumpTime = -Mathf.Infinity;
     void Start()
@@ -64,7 +64,11 @@ public class PlayerMovementLegacy : MonoBehaviour
     void FixedUpdate()
     {
         float dir = 0f;
-        if (horiz == 1f) dir = 1f;
+        if (horiz == 1f)
+        {
+            dir = 1f;
+
+        }
         else if (horiz == -1f) dir = -1f;
 
         rb.AddForce(new Vector2(dir * moveForce * Time.fixedDeltaTime, forceMultiplier), ForceMode2D.Force);
