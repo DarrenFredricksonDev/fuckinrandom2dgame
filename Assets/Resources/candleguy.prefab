@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRaycast
   rb: {fileID: 4244397010860759408}
   rayDistance: 100
-  force: 3000
+  force: 1000
   directionX: 0
   platformLayer:
     serializedVersion: 2
