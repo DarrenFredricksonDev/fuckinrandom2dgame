@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a672130e3940e54d98e9fac14dad140, type: 3}
+  m_Name: GrenadeLauncher
+  m_EditorClassIdentifier: Assembly-CSharp::GunScript
+  name: Grenade Launcher
+  description: Launches Grenades.
+  ammo: 8
+  ammoInClip: 1
+  damage: 0
+  damageOnHeadshot: 0
+  gunSprite: {fileID: -634033901927937303, guid: e73938cd67c238540bc744fff06b6347, type: 3}
+  areaDamage: 100
+  areaRange: 10
+  xYScale: 3
+  gunDelay: 6

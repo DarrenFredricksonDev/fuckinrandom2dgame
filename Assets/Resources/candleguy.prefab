@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: candleguy
       objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: baa520c8aaf3c874b8eb6b93a1684178, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: baa520c8aaf3c874b8eb6b93a1684178, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: baa520c8aaf3c874b8eb6b93a1684178, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -230,12 +238,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRaycast
   rb: {fileID: 4244397010860759408}
   rayDistance: 100
-  force: 1000
+  force: 500
   directionX: 0
   platformLayer:
     serializedVersion: 2
     m_Bits: 8
   started: 0
+  vaporizeParticles: {fileID: 3055717243807444188, guid: 3e4cf2251f124c44ebe37dec5f589b6a, type: 3}
 --- !u!114 &3499090214452817446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,12 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b9456da28904343b5fb097cd74d847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
-  slot1Filled: 0
-  slot2Filled: 0
-  slot3Filled: 0
-  slot1: {fileID: 0}
-  slot2: {fileID: 0}
-  slot3: {fileID: 0}
 --- !u!114 &3526454975332286016
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class PlayerMovementLegacy : MonoBehaviour
     public Rigidbody2D rb;
     float horiz = 0f;
     float lastJumpTime = -Mathf.Infinity;
+
     void Start()
     {
         view = GetComponent<PhotonView>();
@@ -61,13 +62,13 @@ public class PlayerMovementLegacy : MonoBehaviour
             }
         }
     }
+
     void FixedUpdate()
     {
         float dir = 0f;
         if (horiz == 1f)
         {
             dir = 1f;
-
         }
         else if (horiz == -1f) dir = -1f;
 
@@ -80,5 +81,23 @@ public class PlayerMovementLegacy : MonoBehaviour
         {
             PhotonNetwork.Destroy(gameObject);
         }
+    }
+
+    // Networked method to apply damage. Called via PhotonView.RPC on the hit player's PhotonView.
+    [PunRPC]
+    public void RPC_TakeDamage(float amount)
+    {
+        // Only the owner modifies its local health
+        if (!view.IsMine) return;
+        health -= amount;
+    }
+
+    void Die()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
+    void OnHitByParticle()
+    {
+        health -= 2f;
     }
 }

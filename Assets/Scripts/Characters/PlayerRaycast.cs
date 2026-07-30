@@ -11,6 +11,7 @@ public class PlayerRaycast : MonoBehaviour
     public float directionX = 0f;
     public LayerMask platformLayer;
     public bool started = false;
+    public GameObject vaporizeParticles;
     void FixedUpdate()
     {
         bool checkLateGame = GameLogic.isLateGame;
@@ -43,6 +44,7 @@ public class PlayerRaycast : MonoBehaviour
     }
     void Vaporize()
     {
+        PhotonNetwork.Instantiate(vaporizeParticles.name, transform.position, Quaternion.identity);
         GetComponent<PlayerMovementLegacy>().health = 0f;
         PhotonNetwork.Destroy(gameObject);
     }
